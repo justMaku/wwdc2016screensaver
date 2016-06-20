@@ -36,6 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let screenSaverView = screenSaverView {
             screenSaverView.frame = window.contentView!.bounds;
             window.contentView!.addSubview(screenSaverView);
+            screenSaverView.startAnimation()
         }
     }
     

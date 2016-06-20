@@ -18,6 +18,9 @@ extension Array {
 
 class WWDC2016ScreenSaverView: ScreenSaverView {
     
+    let scale:CGFloat = 0.5
+    static let fontSize: CGFloat = 13.0
+    
     var maskImage: NSImage!
     var maskBitmap: NSBitmapImageRep!
     var maskImageRef: CGImage!
@@ -29,19 +32,24 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
         
         let provider = CGDataProvider(url: fontURL)!
         let fontRef = CGFont(provider)
-        return CTFontCreateWithGraphicsFont(fontRef, 13.0, nil, nil)
+        return CTFontCreateWithGraphicsFont(fontRef, WWDC2016ScreenSaverView.fontSize, nil, nil)
     }()
     
     let words = [":", ";", "\\", "/", ".", "!", "?",
                  "+", "-", "*", "&", "^", "[", "]",
                  "(", ")", "#", "@", "&", "<", ">",
-                 "~"
-    ]
+                 "~"]
     
     
     let colors = ["FFFFFF", "D08D61", "59B75C",
                   "8485BC", "94C472", "DB3C40",
                   "B43E92", "1AACA5"]
+    
+    override var frame: CGRect {
+        didSet {
+            createLayers()
+        }
+    }
     
     override init?(frame: NSRect, isPreview: Bool) {
         super.init(frame: frame, isPreview: isPreview)
@@ -55,9 +63,8 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     
     func setup() {
         buildMaskImage()
-        self.animationTimeInterval = 1 
-        self.startAnimation()
     }
+    
     
     func createLayers() {
         
@@ -109,7 +116,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             
             let percentage = percentageOfBlackPixels(CGRect(origin: point, size: boundingRect.size))
             
-            if percentage >= 95 {
+            if percentage >= 1 {
                 let drawingPoint = CGPoint(x: point.x + newOrigin.x, y: point.y + newOrigin.y)
                 let textLayer = CATextLayer()
                 textLayer.string = word
@@ -137,12 +144,6 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             
             lastColor = color
             lastWord = word
-        }
-    }
-    
-    override func draw(_ rect: NSRect) {
-        if textLayers.count == 0 {
-            createLayers()
         }
     }
     
@@ -191,38 +192,42 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             }
         }
         
-        let percentage: CGFloat = (numOfBlackPixels * 100) / numOfPixels
+        let percentage: CGFloat = numOfBlackPixels / numOfPixels
         return percentage
     }
     
-    override func animateOneFrame() {
+    func tick() {
+        if self.isAnimating == false {
+            return
+        }
         
         if textLayers.count == 0 {
             return
         }
         
+        CATransaction.setCompletionBlock {
+            self.tick()
+        }
+
+        
         CATransaction.begin()
+        CATransaction.setAnimationDuration(1.0)
+        CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear))
         
         for _ in 0...10 {
-            let colorAnimation = CABasicAnimation()
-            colorAnimation.duration = 2.0
-            colorAnimation.keyPath = "foregroundColor"
-            colorAnimation.toValue = NSColor.fromHex(colors.random).cgColor
-            
-            
             let layer = textLayers.random
-            layer.add(colorAnimation, forKey: "foregroundColor")
-            
-            layer.string = self.words.random
-        }
-        
-        CATransaction.setCompletionBlock { 
-            self.needsDisplay = true
-            
-            self.startAnimation()
+            layer.removeAllAnimations()
+            layer.foregroundColor = NSColor.fromHex(colors.random).cgColor
+            layer.string = words.random
         }
         
         CATransaction.commit()
+    }
+    
+    override func startAnimation() {
+        super.startAnimation()
+        tick()
     }
     
     override func hasConfigureSheet() -> Bool {

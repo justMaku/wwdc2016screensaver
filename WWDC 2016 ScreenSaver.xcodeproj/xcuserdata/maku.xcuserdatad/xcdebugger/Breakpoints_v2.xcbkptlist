@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WWDC 2016 ScreenSaver/WWDC2016ScreenSaver.swift"
-            timestampString = "488084934.39776"
+            timestampString = "488090878.211953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "Array"
-            landmarkType = "4">
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "tick()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
