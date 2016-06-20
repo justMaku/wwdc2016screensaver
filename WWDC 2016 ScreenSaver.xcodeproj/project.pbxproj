@@ -16,6 +16,7 @@
 		2E21C5031D1703FD00FF2B93 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E21C5011D1703FD00FF2B93 /* MainMenu.xib */; };
 		2E21C5081D17045C00FF2B93 /* WWDC 2016 ScreenSaver.saver in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 2E21C4D31D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver.saver */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E21C50C1D1704ED00FF2B93 /* WWDC 2016 ScreenSaver.saver in Resources */ = {isa = PBXBuildFile; fileRef = 2E21C4D31D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver.saver */; };
+		C5C292561D17D85D006C42E6 /* intro.mov in Resources */ = {isa = PBXBuildFile; fileRef = C5C292551D17D85D006C42E6 /* intro.mov */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		2E21C4FF1D1703FD00FF2B93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E21C5021D1703FD00FF2B93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2E21C5041D1703FD00FF2B93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5C292551D17D85D006C42E6 /* intro.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = intro.mov; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		2E21C4DF1D16FCB300FF2B93 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				C5C292551D17D85D006C42E6 /* intro.mov */,
 				2E21C4E21D16FD0800FF2B93 /* logo_outline.png */,
 				2E21C4E31D16FD0800FF2B93 /* SFMono-Regular.otf */,
 			);
@@ -213,6 +216,7 @@
 			files = (
 				2E21C4E51D16FD0800FF2B93 /* SFMono-Regular.otf in Resources */,
 				2E21C4E41D16FD0800FF2B93 /* logo_outline.png in Resources */,
+				C5C292561D17D85D006C42E6 /* intro.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +438,7 @@
 				2E21C4D81D16FC1A00FF2B93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2E21C5051D1703FD00FF2B93 /* Build configuration list for PBXNativeTarget "WWDC 2016 ScreenSaver Debug App" */ = {
 			isa = XCConfigurationList;
@@ -442,6 +447,7 @@
 				2E21C5071D1703FD00FF2B93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
