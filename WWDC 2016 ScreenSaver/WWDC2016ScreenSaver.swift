@@ -21,6 +21,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     var maskImage: NSImage!
     var maskBitmap: NSBitmapImageRep!
     var maskImageRef: CGImage!
+    var textLayers: [CATextLayer] = []
     
     lazy var font: NSFont = {
         let bundle = Bundle(for: self.dynamicType)
@@ -53,41 +54,17 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     }
     
     func setup() {
-        buildMaskImage()        
-        self.animationTimeInterval = 3
+        buildMaskImage()
+        self.animationTimeInterval = 1 
         self.startAnimation()
     }
     
-    func buildMaskImage() {
-        let bundle = Bundle(for: self.dynamicType)
-        let imageURL = bundle.urlForResource("logo_outline", withExtension: "png")!
+    func createLayers() {
         
-        self.maskImage = NSImage(contentsOf: imageURL)!
-        
-        let provider = CGDataProvider(url: imageURL)!
-        let image = CGImage(pngDataProviderSource: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
-        self.maskImageRef = image
-    }
-    
-    func scaleImage(_ image: CGImage, size: CGSize) -> CGImage {
-        let bitsPerComponent = image.bitsPerComponent
-        let bytesPerRow = image.bytesPerRow
-        let colorSpace = image.colorSpace
-        let bitmapInfo = image.bitmapInfo
-        let context = CGContext(data: nil, width: Int(size.width), height: Int(size.height),
-                                            bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace!, bitmapInfo: bitmapInfo.rawValue)
-        
-        context!.interpolationQuality = CGInterpolationQuality.high
-        context!.draw(in: CGRect(origin: CGPoint.zero, size: size), image: image)
-        return context!.makeImage()!
-    }
-    
-    override func draw(_ rect: NSRect) {
-        let newHeight = rect.height/1.2
+        let newHeight = self.frame.height / 2
         let newWidth = maskImage.size.width * (newHeight / maskImage.size.height)
         let newSize = CGSize(width: newWidth, height: newHeight)
-        let newOrigin = CGPoint(x: rect.width/2 - newWidth/2, y: rect.height/2 - newHeight/2)
-        
+        let newOrigin = CGPoint(x: self.frame.width/2 - newWidth/2, y: self.frame.height/2 - newHeight/2)
         
         let scaledImage = scaleImage(maskImageRef, size: newSize)
         maskBitmap = NSBitmapImageRep(cgImage: scaledImage)
@@ -95,11 +72,10 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
         let drawingRect = CGRect(origin: newOrigin, size: newSize)
         
         let backgroundColor = NSColor.fromHex("292B37")
-        
-        let context: CGContext = NSGraphicsContext.current()!.cgContext
-        context.setFillColor(backgroundColor.cgColor);
-        context.setAlpha(1);
-        context.fill(rect);
+        let layer = CALayer()
+        layer.backgroundColor = backgroundColor.cgColor
+        self.layer = layer
+        self.wantsLayer = true
         
         var lastWord: String? = nil
         var lastColor: NSColor? = nil
@@ -135,7 +111,16 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             
             if percentage >= 95 {
                 let drawingPoint = CGPoint(x: point.x + newOrigin.x, y: point.y + newOrigin.y)
-                (word as NSString).draw(at: drawingPoint, withAttributes: attributes)
+                let textLayer = CATextLayer()
+                textLayer.string = word
+                textLayer.font = font
+                textLayer.foregroundColor = color.cgColor
+                textLayer.fontSize = 13.0
+                textLayer.contentsScale = NSScreen.main()!.backingScaleFactor
+                textLayer.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: boundingRect.size)
+                textLayer.position = drawingPoint
+                layer.addSublayer(textLayer)
+                textLayers.append(textLayer)
             }
             
             
@@ -153,6 +138,36 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             lastColor = color
             lastWord = word
         }
+    }
+    
+    override func draw(_ rect: NSRect) {
+        if textLayers.count == 0 {
+            createLayers()
+        }
+    }
+    
+    func buildMaskImage() {
+        let bundle = Bundle(for: self.dynamicType)
+        let imageURL = bundle.urlForResource("logo_outline", withExtension: "png")!
+        
+        self.maskImage = NSImage(contentsOf: imageURL)!
+        
+        let provider = CGDataProvider(url: imageURL)!
+        let image = CGImage(pngDataProviderSource: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
+        self.maskImageRef = image
+    }
+    
+    func scaleImage(_ image: CGImage, size: CGSize) -> CGImage {
+        let bitsPerComponent = image.bitsPerComponent
+        let bytesPerRow = image.bytesPerRow
+        let colorSpace = image.colorSpace
+        let bitmapInfo = image.bitmapInfo
+        let context = CGContext(data: nil, width: Int(size.width), height: Int(size.height),
+                                            bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace!, bitmapInfo: bitmapInfo.rawValue)
+        
+        context!.interpolationQuality = CGInterpolationQuality.high
+        context!.draw(in: CGRect(origin: CGPoint.zero, size: size), image: image)
+        return context!.makeImage()!
     }
     
     func percentageOfBlackPixels(_ rect: CGRect) -> CGFloat {
@@ -181,7 +196,33 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     }
     
     override func animateOneFrame() {
-        self.needsDisplay = true
+        
+        if textLayers.count == 0 {
+            return
+        }
+        
+        CATransaction.begin()
+        
+        for _ in 0...10 {
+            let colorAnimation = CABasicAnimation()
+            colorAnimation.duration = 2.0
+            colorAnimation.keyPath = "foregroundColor"
+            colorAnimation.toValue = NSColor.fromHex(colors.random).cgColor
+            
+            
+            let layer = textLayers.random
+            layer.add(colorAnimation, forKey: "foregroundColor")
+            
+            layer.string = self.words.random
+        }
+        
+        CATransaction.setCompletionBlock { 
+            self.needsDisplay = true
+            
+            self.startAnimation()
+        }
+        
+        CATransaction.commit()
     }
     
     override func hasConfigureSheet() -> Bool {
