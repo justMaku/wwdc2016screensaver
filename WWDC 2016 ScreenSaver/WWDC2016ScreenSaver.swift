@@ -38,7 +38,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     let words = [":", ";", "\\", "/", ".", "!", "?",
                  "+", "-", "*", "&", "^", "[", "]",
                  "(", ")", "#", "@", "&", "<", ">",
-                 "~"/*, "do", "let", "var", "try", "if", "for", "as"*/]
+                 "~", " "/*, "do", "let", "var", "try", "if", "for", "as"*/]
     
     
     let colors = ["FFFFFF", "D08D61", "59B75C",
@@ -119,7 +119,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             if percentage >= 1 {
                 let drawingPoint = CGPoint(x: point.x + newOrigin.x, y: point.y + newOrigin.y)
                 let textLayer = CATextLayer()
-                textLayer.string = word
+                textLayer.string = " " //word
                 textLayer.font = font
                 textLayer.foregroundColor = color.cgColor
                 textLayer.fontSize = 13.0
@@ -199,7 +199,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     func tick() {
         
         func restart() {
-            DispatchQueue.main.after(when: DispatchTime.now() + 0.01) {
+            DispatchQueue.main.after(when: DispatchTime.now() + 0.05) {
                 self.tick()
             }
         }

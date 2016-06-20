@@ -30,6 +30,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let screenSaverClass = screenSaverBundle.principalClass as? ScreenSaverView.Type else {
             return assertionFailure("Couldn't find a principal class")
         }
+        
+        window.setFrame(NSMakeRect(0, 0, NSScreen.main()?.frame.size.width ?? 900, NSScreen.main()?.frame.size.height ?? 600), display:true)
 
         let screenSaverView = screenSaverClass.init(frame: CGRect(), isPreview: true)
 
