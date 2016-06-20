@@ -7,21 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E21C4C31D16FBCF00FF2B93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E21C4C21D16FBCF00FF2B93 /* AppDelegate.swift */; };
-		2E21C4C51D16FBCF00FF2B93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E21C4C41D16FBCF00FF2B93 /* Assets.xcassets */; };
-		2E21C4C81D16FBCF00FF2B93 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E21C4C61D16FBCF00FF2B93 /* MainMenu.xib */; };
+		2E21C4DA1D16FC4600FF2B93 /* WWDC2016ScreenSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E21C4D91D16FC4600FF2B93 /* WWDC2016ScreenSaver.swift */; };
+		2E21C4E11D16FCBC00FF2B93 /* NSColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E21C4E01D16FCBC00FF2B93 /* NSColor+Hex.swift */; };
+		2E21C4E41D16FD0800FF2B93 /* logo_outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E21C4E21D16FD0800FF2B93 /* logo_outline.png */; };
+		2E21C4E51D16FD0800FF2B93 /* SFMono-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E21C4E31D16FD0800FF2B93 /* SFMono-Regular.otf */; };
+		2E21C4FE1D1703FD00FF2B93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E21C4FD1D1703FD00FF2B93 /* AppDelegate.swift */; };
+		2E21C5001D1703FD00FF2B93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E21C4FF1D1703FD00FF2B93 /* Assets.xcassets */; };
+		2E21C5031D1703FD00FF2B93 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E21C5011D1703FD00FF2B93 /* MainMenu.xib */; };
+		2E21C5081D17045C00FF2B93 /* WWDC 2016 ScreenSaver.saver in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 2E21C4D31D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver.saver */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E21C50C1D1704ED00FF2B93 /* WWDC 2016 ScreenSaver.saver in Resources */ = {isa = PBXBuildFile; fileRef = 2E21C4D31D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver.saver */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2E21C5091D17045C00FF2B93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E21C4B71D16FBCF00FF2B93 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E21C4D21D16FC1A00FF2B93;
+			remoteInfo = "WWDC 2016 ScreenSaver";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2E21C50B1D17045C00FF2B93 /* Embed PlugIns */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2E21C5081D17045C00FF2B93 /* WWDC 2016 ScreenSaver.saver in Embed PlugIns */,
+			);
+			name = "Embed PlugIns";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		2E21C4BF1D16FBCF00FF2B93 /* WWDC 2016 ScreenSaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WWDC 2016 ScreenSaver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E21C4C21D16FBCF00FF2B93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2E21C4C41D16FBCF00FF2B93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2E21C4C71D16FBCF00FF2B93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		2E21C4C91D16FBCF00FF2B93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E21C4D31D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WWDC 2016 ScreenSaver.saver"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E21C4D51D16FC1A00FF2B93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E21C4D91D16FC4600FF2B93 /* WWDC2016ScreenSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWDC2016ScreenSaver.swift; sourceTree = "<group>"; };
+		2E21C4E01D16FCBC00FF2B93 /* NSColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+Hex.swift"; sourceTree = "<group>"; };
+		2E21C4E21D16FD0800FF2B93 /* logo_outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_outline.png; path = Assets/logo_outline.png; sourceTree = "<group>"; };
+		2E21C4E31D16FD0800FF2B93 /* SFMono-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFMono-Regular.otf"; path = "Assets/SFMono-Regular.otf"; sourceTree = "<group>"; };
+		2E21C4FB1D1703FD00FF2B93 /* WWDC 2016 ScreenSaver Debug App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WWDC 2016 ScreenSaver Debug App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E21C4FD1D1703FD00FF2B93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2E21C4FF1D1703FD00FF2B93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2E21C5021D1703FD00FF2B93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2E21C5041D1703FD00FF2B93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2E21C4BC1D16FBCF00FF2B93 /* Frameworks */ = {
+		2E21C4D01D16FC1A00FF2B93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E21C4F81D1703FD00FF2B93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -34,7 +77,8 @@
 		2E21C4B61D16FBCF00FF2B93 = {
 			isa = PBXGroup;
 			children = (
-				2E21C4C11D16FBCF00FF2B93 /* WWDC 2016 ScreenSaver */,
+				2E21C4D41D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver */,
+				2E21C4FC1D1703FD00FF2B93 /* WWDC 2016 ScreenSaver Debug App */,
 				2E21C4C01D16FBCF00FF2B93 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -42,32 +86,53 @@
 		2E21C4C01D16FBCF00FF2B93 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2E21C4BF1D16FBCF00FF2B93 /* WWDC 2016 ScreenSaver.app */,
+				2E21C4D31D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver.saver */,
+				2E21C4FB1D1703FD00FF2B93 /* WWDC 2016 ScreenSaver Debug App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2E21C4C11D16FBCF00FF2B93 /* WWDC 2016 ScreenSaver */ = {
+		2E21C4D41D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver */ = {
 			isa = PBXGroup;
 			children = (
-				2E21C4C21D16FBCF00FF2B93 /* AppDelegate.swift */,
-				2E21C4C41D16FBCF00FF2B93 /* Assets.xcassets */,
-				2E21C4C61D16FBCF00FF2B93 /* MainMenu.xib */,
-				2E21C4C91D16FBCF00FF2B93 /* Info.plist */,
+				2E21C4DF1D16FCB300FF2B93 /* Assets */,
+				2E21C4D51D16FC1A00FF2B93 /* Info.plist */,
+				2E21C4D91D16FC4600FF2B93 /* WWDC2016ScreenSaver.swift */,
+				2E21C4E01D16FCBC00FF2B93 /* NSColor+Hex.swift */,
 			);
 			path = "WWDC 2016 ScreenSaver";
+			sourceTree = "<group>";
+		};
+		2E21C4DF1D16FCB300FF2B93 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				2E21C4E21D16FD0800FF2B93 /* logo_outline.png */,
+				2E21C4E31D16FD0800FF2B93 /* SFMono-Regular.otf */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		2E21C4FC1D1703FD00FF2B93 /* WWDC 2016 ScreenSaver Debug App */ = {
+			isa = PBXGroup;
+			children = (
+				2E21C4FD1D1703FD00FF2B93 /* AppDelegate.swift */,
+				2E21C4FF1D1703FD00FF2B93 /* Assets.xcassets */,
+				2E21C5011D1703FD00FF2B93 /* MainMenu.xib */,
+				2E21C5041D1703FD00FF2B93 /* Info.plist */,
+			);
+			path = "WWDC 2016 ScreenSaver Debug App";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2E21C4BE1D16FBCF00FF2B93 /* WWDC 2016 ScreenSaver */ = {
+		2E21C4D21D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2E21C4CC1D16FBCF00FF2B93 /* Build configuration list for PBXNativeTarget "WWDC 2016 ScreenSaver" */;
+			buildConfigurationList = 2E21C4D61D16FC1A00FF2B93 /* Build configuration list for PBXNativeTarget "WWDC 2016 ScreenSaver" */;
 			buildPhases = (
-				2E21C4BB1D16FBCF00FF2B93 /* Sources */,
-				2E21C4BC1D16FBCF00FF2B93 /* Frameworks */,
-				2E21C4BD1D16FBCF00FF2B93 /* Resources */,
+				2E21C4CF1D16FC1A00FF2B93 /* Sources */,
+				2E21C4D01D16FC1A00FF2B93 /* Frameworks */,
+				2E21C4D11D16FC1A00FF2B93 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -75,7 +140,26 @@
 			);
 			name = "WWDC 2016 ScreenSaver";
 			productName = "WWDC 2016 ScreenSaver";
-			productReference = 2E21C4BF1D16FBCF00FF2B93 /* WWDC 2016 ScreenSaver.app */;
+			productReference = 2E21C4D31D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver.saver */;
+			productType = "com.apple.product-type.bundle";
+		};
+		2E21C4FA1D1703FD00FF2B93 /* WWDC 2016 ScreenSaver Debug App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E21C5051D1703FD00FF2B93 /* Build configuration list for PBXNativeTarget "WWDC 2016 ScreenSaver Debug App" */;
+			buildPhases = (
+				2E21C4F71D1703FD00FF2B93 /* Sources */,
+				2E21C4F81D1703FD00FF2B93 /* Frameworks */,
+				2E21C4F91D1703FD00FF2B93 /* Resources */,
+				2E21C50B1D17045C00FF2B93 /* Embed PlugIns */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E21C50A1D17045C00FF2B93 /* PBXTargetDependency */,
+			);
+			name = "WWDC 2016 ScreenSaver Debug App";
+			productName = "WWDC 2016 ScreenSaver Debug App";
+			productReference = 2E21C4FB1D1703FD00FF2B93 /* WWDC 2016 ScreenSaver Debug App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -88,7 +172,14 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Makowiec;
 				TargetAttributes = {
-					2E21C4BE1D16FBCF00FF2B93 = {
+					2E21C4D21D16FC1A00FF2B93 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = Q7LB9QSYQ9;
+						DevelopmentTeamName = "Michal Kaluzny";
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+					2E21C4FA1D1703FD00FF2B93 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = Q7LB9QSYQ9;
 						DevelopmentTeamName = "Michal Kaluzny";
@@ -109,39 +200,67 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2E21C4BE1D16FBCF00FF2B93 /* WWDC 2016 ScreenSaver */,
+				2E21C4D21D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver */,
+				2E21C4FA1D1703FD00FF2B93 /* WWDC 2016 ScreenSaver Debug App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2E21C4BD1D16FBCF00FF2B93 /* Resources */ = {
+		2E21C4D11D16FC1A00FF2B93 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E21C4C51D16FBCF00FF2B93 /* Assets.xcassets in Resources */,
-				2E21C4C81D16FBCF00FF2B93 /* MainMenu.xib in Resources */,
+				2E21C4E51D16FD0800FF2B93 /* SFMono-Regular.otf in Resources */,
+				2E21C4E41D16FD0800FF2B93 /* logo_outline.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E21C4F91D1703FD00FF2B93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E21C50C1D1704ED00FF2B93 /* WWDC 2016 ScreenSaver.saver in Resources */,
+				2E21C5001D1703FD00FF2B93 /* Assets.xcassets in Resources */,
+				2E21C5031D1703FD00FF2B93 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2E21C4BB1D16FBCF00FF2B93 /* Sources */ = {
+		2E21C4CF1D16FC1A00FF2B93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E21C4C31D16FBCF00FF2B93 /* AppDelegate.swift in Sources */,
+				2E21C4E11D16FCBC00FF2B93 /* NSColor+Hex.swift in Sources */,
+				2E21C4DA1D16FC4600FF2B93 /* WWDC2016ScreenSaver.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E21C4F71D1703FD00FF2B93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E21C4FE1D1703FD00FF2B93 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2E21C50A1D17045C00FF2B93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E21C4D21D16FC1A00FF2B93 /* WWDC 2016 ScreenSaver */;
+			targetProxy = 2E21C5091D17045C00FF2B93 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		2E21C4C61D16FBCF00FF2B93 /* MainMenu.xib */ = {
+		2E21C5011D1703FD00FF2B93 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2E21C4C71D16FBCF00FF2B93 /* Base */,
+				2E21C5021D1703FD00FF2B93 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -235,27 +354,62 @@
 			};
 			name = Release;
 		};
-		2E21C4CD1D16FBCF00FF2B93 /* Debug */ = {
+		2E21C4D71D16FC1A00FF2B93 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "WWDC 2016 ScreenSaver/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.justmaku.WWDC-2016-ScreenSaver";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				WRAPPER_EXTENSION = saver;
+			};
+			name = Debug;
+		};
+		2E21C4D81D16FC1A00FF2B93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "WWDC 2016 ScreenSaver/Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.justmaku.WWDC-2016-ScreenSaver";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				WRAPPER_EXTENSION = saver;
+			};
+			name = Release;
+		};
+		2E21C5061D1703FD00FF2B93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "WWDC 2016 ScreenSaver Debug App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.justmaku.WWDC-2016-ScreenSaver-Debug-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		2E21C4CE1D16FBCF00FF2B93 /* Release */ = {
+		2E21C5071D1703FD00FF2B93 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "WWDC 2016 ScreenSaver/Info.plist";
+				INFOPLIST_FILE = "WWDC 2016 ScreenSaver Debug App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.justmaku.WWDC-2016-ScreenSaver";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.justmaku.WWDC-2016-ScreenSaver-Debug-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -273,11 +427,19 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2E21C4CC1D16FBCF00FF2B93 /* Build configuration list for PBXNativeTarget "WWDC 2016 ScreenSaver" */ = {
+		2E21C4D61D16FC1A00FF2B93 /* Build configuration list for PBXNativeTarget "WWDC 2016 ScreenSaver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2E21C4CD1D16FBCF00FF2B93 /* Debug */,
-				2E21C4CE1D16FBCF00FF2B93 /* Release */,
+				2E21C4D71D16FC1A00FF2B93 /* Debug */,
+				2E21C4D81D16FC1A00FF2B93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2E21C5051D1703FD00FF2B93 /* Build configuration list for PBXNativeTarget "WWDC 2016 ScreenSaver Debug App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E21C5061D1703FD00FF2B93 /* Debug */,
+				2E21C5071D1703FD00FF2B93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

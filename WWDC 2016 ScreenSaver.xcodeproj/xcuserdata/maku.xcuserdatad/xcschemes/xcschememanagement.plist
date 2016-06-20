@@ -4,15 +4,40 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>WWDC 2016 ScreenSaver.xcscheme</key>
+		<key>Test.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>WWDC 2016 ScreenSaver Debug App.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>WWDC 2016 ScreenSaver.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>2E21C4BE1D16FBCF00FF2B93</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E21C4D21D16FC1A00FF2B93</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E21C4E91D1703C000FF2B93</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E21C4FA1D1703FD00FF2B93</key>
 		<dict>
 			<key>primary</key>
 			<true/>
