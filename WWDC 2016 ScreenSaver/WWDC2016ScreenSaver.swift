@@ -18,7 +18,7 @@ extension Array {
 
 class WWDC2016ScreenSaverView: ScreenSaverView {
     
-    let scale:CGFloat = 0.5
+    let scale:CGFloat = 0.75
     static let fontSize: CGFloat = 13.0
     
     var maskImage: NSImage!
@@ -38,7 +38,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     let words = [":", ";", "\\", "/", ".", "!", "?",
                  "+", "-", "*", "&", "^", "[", "]",
                  "(", ")", "#", "@", "&", "<", ">",
-                 "~"]
+                 "~"/*, "do", "let", "var", "try", "if", "for", "as"*/]
     
     
     let colors = ["FFFFFF", "D08D61", "59B75C",
@@ -68,7 +68,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     
     func createLayers() {
         
-        let newHeight = self.frame.height / 2
+        let newHeight = self.frame.height * scale
         let newWidth = maskImage.size.width * (newHeight / maskImage.size.height)
         let newSize = CGSize(width: newWidth, height: newHeight)
         let newOrigin = CGPoint(x: self.frame.width/2 - newWidth/2, y: self.frame.height/2 - newHeight/2)
@@ -197,23 +197,20 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     }
     
     func tick() {
+        
+        func restart() {
+            DispatchQueue.main.after(when: DispatchTime.now() + 0.01) {
+                self.tick()
+            }
+        }
+        
         if self.isAnimating == false {
-            return
+            restart()
         }
         
         if textLayers.count == 0 {
-            return
+            restart()
         }
-        
-        CATransaction.setCompletionBlock {
-            self.tick()
-        }
-
-        
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(1.0)
-        CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear))
         
         for _ in 0...10 {
             let layer = textLayers.random
@@ -222,7 +219,9 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             layer.string = words.random
         }
         
-        CATransaction.commit()
+        
+        restart()
+        
     }
     
     override func startAnimation() {
