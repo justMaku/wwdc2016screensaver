@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2E21C4BE1D16FBCF00FF2B93"
+               BlueprintIdentifier = "2E21C4FA1D1703FD00FF2B93"
                BuildableName = "WWDC 2016 ScreenSaver Debug App.app"
                BlueprintName = "WWDC 2016 ScreenSaver Debug App"
                ReferencedContainer = "container:WWDC 2016 ScreenSaver.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2E21C4BE1D16FBCF00FF2B93"
+            BlueprintIdentifier = "2E21C4FA1D1703FD00FF2B93"
             BuildableName = "WWDC 2016 ScreenSaver Debug App.app"
             BlueprintName = "WWDC 2016 ScreenSaver Debug App"
             ReferencedContainer = "container:WWDC 2016 ScreenSaver.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2E21C4BE1D16FBCF00FF2B93"
+            BlueprintIdentifier = "2E21C4FA1D1703FD00FF2B93"
             BuildableName = "WWDC 2016 ScreenSaver Debug App.app"
             BlueprintName = "WWDC 2016 ScreenSaver Debug App"
             ReferencedContainer = "container:WWDC 2016 ScreenSaver.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2E21C4BE1D16FBCF00FF2B93"
+            BlueprintIdentifier = "2E21C4FA1D1703FD00FF2B93"
             BuildableName = "WWDC 2016 ScreenSaver Debug App.app"
             BlueprintName = "WWDC 2016 ScreenSaver Debug App"
             ReferencedContainer = "container:WWDC 2016 ScreenSaver.xcodeproj">

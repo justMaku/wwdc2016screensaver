@@ -14,11 +14,30 @@ extension Array {
         let index = arc4random_uniform(UInt32(self.count))
         return self[Int(index)]
     }
+    
+    /// Returns an array containing this sequence shuffled
+    var shuffled: Array {
+        var elements = self
+        return elements.shuffle()
+    }
+    
+    /// Shuffles this sequence in place
+    @discardableResult
+    mutating func shuffle() -> Array {
+        indices.dropLast().forEach({
+            guard case let index = Int(arc4random_uniform(UInt32(count - $0))) + $0
+                where index != $0 else { return }
+            swap(&self[$0], &self[index])
+        })
+        return self
+    }
+
+    func choose(_ n: Int) -> Array { return Array(shuffled.prefix(n)) }
 }
 
 class WWDC2016ScreenSaverView: ScreenSaverView {
     
-    let scale:CGFloat = 0.75
+    let scale:CGFloat = 0.5
     static let fontSize: CGFloat = 13.0
     
     var maskImage: NSImage!
@@ -38,8 +57,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     let words = [":", ";", "\\", "/", ".", "!", "?",
                  "+", "-", "*", "&", "^", "[", "]",
                  "(", ")", "#", "@", "&", "<", ">",
-                 "~", " "]
-    
+                 "~"]    
     
     let colors = ["FFFFFF", "D08D61", "59B75C",
                   "8485BC", "94C472", "DB3C40",
@@ -84,44 +102,21 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
         self.layer = layer
         self.wantsLayer = true
         
-        var lastWord: String? = nil
-        var lastColor: NSColor? = nil
         var point: CGPoint = CGPoint.zero
         
         while true {
+
+            let attributes: [String: AnyObject] = [NSFontAttributeName: font]
             
-            var word: String!
-            var color: NSColor!
-            
-            while true {
-                let nextColor = NSColor.fromHex(colors.random)
-                if nextColor != lastColor {
-                    color = nextColor
-                    break
-                }
-            }
-            
-            while true {
-                let nextWord = words.random
-                if nextWord != lastWord {
-                    word = nextWord
-                    break
-                }
-            }
-            
-            let attributes: [String: AnyObject] = [NSForegroundColorAttributeName: color,
-                                                   NSFontAttributeName: font]
-            
-            let boundingRect = (word as NSString).boundingRect(with: drawingRect.size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributes)
+            let boundingRect = (" " as NSString).boundingRect(with: drawingRect.size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributes)
             
             let percentage = percentageOfBlackPixels(CGRect(origin: point, size: boundingRect.size))
             
             if percentage >= 1 {
                 let drawingPoint = CGPoint(x: point.x + newOrigin.x, y: point.y + newOrigin.y)
                 let textLayer = CATextLayer()
-                textLayer.string = " "
                 textLayer.font = font
-                textLayer.foregroundColor = color.cgColor
+                textLayer.foregroundColor = backgroundColor.cgColor
                 textLayer.fontSize = 13.0
                 textLayer.contentsScale = NSScreen.main()!.backingScaleFactor
                 textLayer.bounds = CGRect(origin: CGPoint(x: 0, y: 0), size: boundingRect.size)
@@ -129,7 +124,6 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
                 layer.addSublayer(textLayer)
                 textLayers.append(textLayer)
             }
-            
             
             if point.x > drawingRect.width - boundingRect.width {
                 point.x = 0
@@ -141,9 +135,6 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             if point.y > drawingRect.height - boundingRect.height {
                 break
             }
-            
-            lastColor = color
-            lastWord = word
         }
     }
     
@@ -197,31 +188,65 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     }
     
     func tick() {
-        
-        func restart() {
-            DispatchQueue.main.after(when: DispatchTime.now() + 0.05) {
-                self.tick()
-            }
-        }
-        
-        if self.isAnimating && !(textLayers.count == 0) {
-            
-            let max = Int(ceil(Float(textLayers.count) / 100))
-            for _ in 0...max {
-                CATransaction.begin()
-                CATransaction.setAnimationDuration(0.05)
-                CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-                CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear))
-                let layer = textLayers.random
-                layer.foregroundColor = NSColor.fromHex(colors.random).cgColor
+        func updateLayersText(layers: [CATextLayer]) {
+            for i in 0..<layers.count {
+                let layer = layers[i]
                 layer.string = words.random
-                CATransaction.commit()
             }
-            
         }
         
-        restart()
+        func animateLayersColor(layers: [CATextLayer]) {
+            for i in 0..<layers.count {
+                
+                let layer = layers[i]
+                let color = NSColor.fromHex(colors.random).cgColor
+                
+                layer.removeAllAnimations()
+                
+                let animation = CABasicAnimation()
+                animation.duration = 0.3
+                animation.fromValue = layer.foregroundColor
+                animation.toValue = color
+                
+                layer.foregroundColor = color
+                layer.add(animation, forKey: #keyPath(CATextLayer.foregroundColor))
+            }
+        }
         
+        if self.isAnimating == false {
+            return
+        }
+        
+        if textLayers.count == 0 {
+            return
+        }
+        
+        let layersToPresent = textLayers.filter { $0.string == nil }.choose(100)
+        let visibleLayers = textLayers.filter { $0.string != nil }
+        let layersToAnimate = visibleLayers.choose(100)
+
+        if layersToPresent.count > 0 {
+            updateLayersText(layers: layersToPresent)
+        }
+        
+        CATransaction.begin()
+        CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+        CATransaction.setCompletionBlock {
+            self.tick()
+        }
+        
+        if layersToPresent.count > 0 {
+            animateLayersColor(layers: layersToPresent)
+        }
+        
+        if layersToAnimate.count > 0 {
+            animateLayersColor(layers: layersToAnimate)
+        }
+        
+        CATransaction.commit()
+        
+        let layersToUpdate = textLayers.filter { layersToAnimate.contains($0) == false }.choose(100)
+        updateLayersText(layers: layersToUpdate)
     }
     
     override func startAnimation() {
