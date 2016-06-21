@@ -18,7 +18,7 @@ extension Array {
 
 class WWDC2016ScreenSaverView: ScreenSaverView {
     
-    let scale:CGFloat = 0.5
+    let scale:CGFloat = 0.75
     static let fontSize: CGFloat = 13.0
     
     var maskImage: NSImage!
@@ -38,7 +38,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     let words = [":", ";", "\\", "/", ".", "!", "?",
                  "+", "-", "*", "&", "^", "[", "]",
                  "(", ")", "#", "@", "&", "<", ">",
-                 "~"]
+                 "~", " "]
     
     
     let colors = ["FFFFFF", "D08D61", "59B75C",
@@ -68,7 +68,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     
     func createLayers() {
         
-        let newHeight = self.frame.height / 2
+        let newHeight = self.frame.height * scale
         let newWidth = maskImage.size.width * (newHeight / maskImage.size.height)
         let newSize = CGSize(width: newWidth, height: newHeight)
         let newOrigin = CGPoint(x: self.frame.width/2 - newWidth/2, y: self.frame.height/2 - newHeight/2)
@@ -119,7 +119,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             if percentage >= 1 {
                 let drawingPoint = CGPoint(x: point.x + newOrigin.x, y: point.y + newOrigin.y)
                 let textLayer = CATextLayer()
-                textLayer.string = word
+                textLayer.string = " "
                 textLayer.font = font
                 textLayer.foregroundColor = color.cgColor
                 textLayer.fontSize = 13.0
@@ -197,32 +197,31 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     }
     
     func tick() {
-        if self.isAnimating == false {
-            return
+        
+        func restart() {
+            DispatchQueue.main.after(when: DispatchTime.now() + 0.05) {
+                self.tick()
+            }
         }
         
-        if textLayers.count == 0 {
-            return
+        if self.isAnimating && !(textLayers.count == 0) {
+            
+            let max = Int(ceil(Float(textLayers.count) / 100))
+            for _ in 0...max {
+                CATransaction.begin()
+                CATransaction.setAnimationDuration(0.05)
+                CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+                CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear))
+                let layer = textLayers.random
+                layer.foregroundColor = NSColor.fromHex(colors.random).cgColor
+                layer.string = words.random
+                CATransaction.commit()
+            }
+            
         }
         
-        CATransaction.setCompletionBlock {
-            self.tick()
-        }
-
+        restart()
         
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(1.0)
-        CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear))
-        
-        for _ in 0...10 {
-            let layer = textLayers.random
-            layer.removeAllAnimations()
-            layer.foregroundColor = NSColor.fromHex(colors.random).cgColor
-            layer.string = words.random
-        }
-        
-        CATransaction.commit()
     }
     
     override func startAnimation() {
