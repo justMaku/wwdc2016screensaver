@@ -38,7 +38,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
     let words = [":", ";", "\\", "/", ".", "!", "?",
                  "+", "-", "*", "&", "^", "[", "]",
                  "(", ")", "#", "@", "&", "<", ">",
-                 "~", " "/*, "do", "let", "var", "try", "if", "for", "as"*/]
+                 "~", " "]
     
     
     let colors = ["FFFFFF", "D08D61", "59B75C",
@@ -119,7 +119,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             if percentage >= 1 {
                 let drawingPoint = CGPoint(x: point.x + newOrigin.x, y: point.y + newOrigin.y)
                 let textLayer = CATextLayer()
-                textLayer.string = " " //word
+                textLayer.string = " "
                 textLayer.font = font
                 textLayer.foregroundColor = color.cgColor
                 textLayer.fontSize = 13.0
@@ -204,21 +204,21 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             }
         }
         
-        if self.isAnimating == false {
-            restart()
+        if self.isAnimating && !(textLayers.count == 0) {
+            
+            let max = Int(ceil(Float(textLayers.count) / 100))
+            for _ in 0...max {
+                CATransaction.begin()
+                CATransaction.setAnimationDuration(0.05)
+                CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
+                CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear))
+                let layer = textLayers.random
+                layer.foregroundColor = NSColor.fromHex(colors.random).cgColor
+                layer.string = words.random
+                CATransaction.commit()
+            }
+            
         }
-        
-        if textLayers.count == 0 {
-            restart()
-        }
-        
-        for _ in 0...10 {
-            let layer = textLayers.random
-            layer.removeAllAnimations()
-            layer.foregroundColor = NSColor.fromHex(colors.random).cgColor
-            layer.string = words.random
-        }
-        
         
         restart()
         
