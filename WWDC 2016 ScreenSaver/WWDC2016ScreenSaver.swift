@@ -37,7 +37,8 @@ extension Array {
 
 class WWDC2016ScreenSaverView: ScreenSaverView {
     
-    let scale:CGFloat = 0.5
+    let scale: CGFloat = 0.5
+    let numberOfItemsToDrawPerTick = 50
     static let fontSize: CGFloat = 13.0
     
     var maskImage: NSImage!
@@ -204,7 +205,7 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
                 layer.removeAllAnimations()
                 
                 let animation = CABasicAnimation()
-                animation.duration = 0.3
+                animation.duration = 0.4
                 animation.fromValue = layer.foregroundColor
                 animation.toValue = color
                 
@@ -221,9 +222,9 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             return
         }
         
-        let layersToPresent = textLayers.filter { $0.string == nil }.choose(100)
+        let layersToPresent = textLayers.filter { $0.string == nil }.choose(numberOfItemsToDrawPerTick)
         let visibleLayers = textLayers.filter { $0.string != nil }
-        let layersToAnimate = visibleLayers.choose(100)
+        let layersToAnimate = visibleLayers.choose(numberOfItemsToDrawPerTick)
 
         if layersToPresent.count > 0 {
             updateLayersText(layers: layersToPresent)
@@ -239,14 +240,16 @@ class WWDC2016ScreenSaverView: ScreenSaverView {
             animateLayersColor(layers: layersToPresent)
         }
         
-        if layersToAnimate.count > 0 {
+        if layersToAnimate.count > 0 && layersToPresent.count == 0 {
             animateLayersColor(layers: layersToAnimate)
         }
         
         CATransaction.commit()
         
-        let layersToUpdate = textLayers.filter { layersToAnimate.contains($0) == false }.choose(100)
-        updateLayersText(layers: layersToUpdate)
+        if layersToPresent.count == 0 {
+            let layersToUpdate = textLayers.filter { layersToAnimate.contains($0) == false }.choose(numberOfItemsToDrawPerTick)
+            updateLayersText(layers: layersToUpdate)
+        }
     }
     
     override func startAnimation() {
